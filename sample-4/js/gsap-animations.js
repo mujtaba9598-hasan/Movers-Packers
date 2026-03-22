@@ -6,6 +6,18 @@ document.addEventListener("DOMContentLoaded", (event) => {
   // 1. Initial Page Loader animation with Complex Scene
   if (document.querySelector(".loader-overlay")) {
       const tlLoader = gsap.timeline();
+
+      // Show skip button after 3 seconds
+      const skipBtn = document.getElementById("skip-loader");
+      if (skipBtn) {
+        setTimeout(() => skipBtn.classList.add("visible"), 3000);
+        skipBtn.addEventListener("click", () => {
+          tlLoader.progress(1);
+          gsap.to(".loader-overlay", { duration: 0.4, height: 0, ease: "expo.inOut" });
+          gsap.from(".hero-content > *", { duration: 0.6, y: 30, opacity: 0, stagger: 0.1, ease: "power3.out", delay: 0.2 });
+          skipBtn.style.display = "none";
+        });
+      }
       
       const truckEl = document.querySelector("#scene-truck");
       const truckOffset = truckEl ? truckEl.offsetLeft : 0;
@@ -74,7 +86,8 @@ document.addEventListener("DOMContentLoaded", (event) => {
        .to(".loader-overlay", {
                  duration: 1,
                  height: 0,
-                 ease: "expo.inOut"
+                 ease: "expo.inOut",
+                 onStart: () => { const sb = document.getElementById("skip-loader"); if (sb) sb.style.display = "none"; }
              })
        .from(".hero-content > *", {
                  duration: 1,
