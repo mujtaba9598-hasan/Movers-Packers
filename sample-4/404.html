@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - Page Not Found | Timeless Relocation</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { theme: { extend: { colors: { brand: { navy: '#0A192F', coral: '#FF5722', light: '#F8FAFC', gray: '#64748B' } }, fontFamily: { sans: ['Inter', 'sans-serif'], serif: ['Playfair Display', 'serif'] } } } }
+    </script>
+    
+    <style>
+        body { background-color: #0A192F; color: #F8FAFC; overflow: hidden; }
+        .glitch { position: relative; color: white; }
+        .glitch::before, .glitch::after { content: attr(data-text); position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+        .glitch::before { left: 2px; text-shadow: -2px 0 red; clip: rect(24px, 550px, 90px, 0); animation: glitch-anim-2 3s infinite linear alternate-reverse; }
+        .glitch::after { left: -2px; text-shadow: -2px 0 blue; clip: rect(85px, 550px, 140px, 0); animation: glitch-anim 2.5s infinite linear alternate-reverse; }
+        @keyframes glitch-anim { 0% { clip: rect(27px, 9999px, 86px, 0); } 20% { clip: rect(74px, 9999px, 55px, 0); } 40% { clip: rect(100px, 9999px, 20px, 0); } 60% { clip: rect(32px, 9999px, 60px, 0); } 80% { clip: rect(9px, 9999px, 107px, 0); } 100% { clip: rect(110px, 9999px, 16px, 0); } }
+        @keyframes glitch-anim-2 { 0% { clip: rect(65px, 9999px, 100px, 0); } 20% { clip: rect(12px, 9999px, 86px, 0); } 40% { clip: rect(52px, 9999px, 11px, 0); } 60% { clip: rect(8px, 9999px, 83px, 0); } 80% { clip: rect(107px, 9999px, 2px, 0); } 100% { clip: rect(98px, 9999px, 62px, 0); } }
+        .reveal-up { opacity: 0; transform: translateY(40px); }
+    </style>
+</head>
+<body class="antialiased font-sans h-screen flex flex-col">
+
+    <!-- Header -->
+    <header class="w-full z-50 top-0 py-6 px-10 flex justify-between items-center text-white absolute">
+        <a href="index.html" class="text-2xl font-serif font-bold tracking-wider"><img src="images/Timeless_Logo.png" alt="Timeless Relocation Logo" width="130" height="54" style="object-fit: contain;"></a>
+        <nav class="hidden md:flex space-x-12 font-medium tracking-wide">
+            <a href="index.html" class="hover:text-brand-coral transition-colors">Home</a>
+            <a href="about.html" class="hover:text-brand-coral transition-colors">About</a>
+            <a href="contact.html" class="hover:text-brand-coral transition-colors">Contact</a>
+        </nav>
+    </header>
+
+    <!-- 404 Content -->
+    <main class="flex-grow flex items-center justify-center relative overflow-hidden">
+        <div class="absolute inset-0 bg-brand-navy z-0">
+            <!-- Background floating boxes -->
+            <div id="floating-boxes" class="absolute inset-0 opacity-10"></div>
+        </div>
+        
+        <div class="container mx-auto px-6 text-center z-10">
+            <h1 class="font-serif text-[10rem] md:text-[15rem] leading-none mb-4 glitch" data-text="404" style="animation: fadeUp 1s ease forwards">404</h1>
+            <h2 class="text-3xl md:text-5xl text-brand-coral font-serif mb-6 reveal-up">Looks like you're lost.</h2>
+            <p class="text-brand-gray text-xl mb-12 max-w-2xl mx-auto reveal-up">The page you are looking for might have been moved, deleted, or possibly never existed.</p>
+            
+            <div class="reveal-up">
+                <a href="index.html" class="inline-block bg-brand-coral text-white px-10 py-5 rounded-full font-bold hover:bg-white hover:text-brand-navy transition-colors">Return to Home</a>
+            </div>
+        </div>
+    </main>
+
+    <!-- GSAP Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Simple GSAP Reveal 
+            gsap.to('.reveal-up', { y: 0, opacity: 1, duration: 1, stagger: 0.2, ease: "power3.out", delay: 0.5 });
+            
+            // Floating boxes background effect
+            const container = document.getElementById('floating-boxes');
+            for(let i=0; i<15; i++) {
+                let box = document.createElement('div');
+                box.innerHTML = '📦';
+                box.style.position = 'absolute';
+                box.style.fontSize = (Math.random() * 4 + 2) + 'rem';
+                box.style.left = Math.random() * 100 + 'vw';
+                box.style.top = Math.random() * 100 + 'vh';
+                box.style.filter = 'grayscale(100%)';
+                container.appendChild(box);
+                
+                gsap.to(box, {
+                    y: "-=100", 
+                    x: "+=" + (Math.random() * 50 - 25),
+                    rotation: Math.random() * 360,
+                    duration: Math.random() * 5 + 5,
+                    repeat: -1,
+                    yoyo: true,
+                    ease: "sine.inOut"
+                });
+            }
+        });
+    </script>
+    <style>.whatsapp-float{position:fixed;bottom:28px;right:28px;z-index:9999}.whatsapp-float a{display:flex;align-items:center;justify-content:center;width:64px;height:64px;background:#25D366;border-radius:50%;box-shadow:0 6px 24px rgba(37,211,102,0.4);color:white;transition:transform 0.3s}.whatsapp-float a:hover{transform:scale(1.1)}</style>
+    <div class="whatsapp-float">
+      <a href="https://wa.me/971568654794?text=Hello!%20I%20need%20help%20with%20my%20move." target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      </a>
+    </div>
+</body>
+</html>

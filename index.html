@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Timeless Relocation | Website Redesign Samples</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --primary: #0A192F;
+      --accent: #F59E0B;
+      --accent-hover: #D97706;
+      --bg: #F8FAFC;
+      --card-bg: #FFFFFF;
+      --text: #334155;
+      --text-light: #64748B;
+      --border: #E2E8F0;
+      --shadow: 0 4px 24px rgba(0,0,0,0.06);
+      --shadow-hover: 0 12px 40px rgba(0,0,0,0.12);
+      --radius: 16px;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Header */
+    .header {
+      background: var(--primary);
+      padding: 24px 0;
+      text-align: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 20px rgba(10,25,47,0.3);
+    }
+
+    .header-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .header img {
+      height: 56px;
+      width: auto;
+      object-fit: contain;
+    }
+
+    .header h1 {
+      color: #FFFFFF;
+      font-size: 1.25rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+    }
+
+    .header p {
+      width: 100%;
+      color: rgba(255,255,255,0.6);
+      font-size: 0.85rem;
+      font-weight: 400;
+    }
+
+    /* Main */
+    .main {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 48px 24px 80px;
+    }
+
+    .intro {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+
+    .intro h2 {
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--primary);
+      margin-bottom: 12px;
+      letter-spacing: -0.03em;
+    }
+
+    .intro p {
+      font-size: 1.05rem;
+      color: var(--text-light);
+      max-width: 600px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    /* Sample Grid */
+    .samples-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 28px;
+    }
+
+    .sample-card {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      overflow: hidden;
+      transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+      text-decoration: none;
+      color: inherit;
+      cursor: pointer;
+    }
+
+    .sample-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-hover);
+      border-color: var(--accent);
+    }
+
+    .sample-preview {
+      position: relative;
+      width: 100%;
+      height: 220px;
+      overflow: hidden;
+      background: var(--primary);
+    }
+
+    .sample-preview iframe {
+      width: 200%;
+      height: 200%;
+      border: none;
+      transform: scale(0.5);
+      transform-origin: top left;
+      pointer-events: none;
+    }
+
+    .sample-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 50%, rgba(10,25,47,0.6) 100%);
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      padding-bottom: 16px;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .sample-card:hover .sample-overlay {
+      opacity: 1;
+    }
+
+    .preview-btn {
+      background: var(--accent);
+      color: var(--primary);
+      border: none;
+      padding: 10px 24px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      cursor: pointer;
+      letter-spacing: 0.02em;
+    }
+
+    .sample-info {
+      padding: 20px 24px 24px;
+    }
+
+    .sample-number {
+      display: inline-block;
+      background: rgba(245,158,11,0.1);
+      color: var(--accent-hover);
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 8px;
+    }
+
+    .sample-info h3 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 6px;
+    }
+
+    .sample-info p {
+      font-size: 0.875rem;
+      color: var(--text-light);
+      line-height: 1.5;
+    }
+
+    /* Footer */
+    .footer {
+      text-align: center;
+      padding: 32px 24px;
+      border-top: 1px solid var(--border);
+      color: var(--text-light);
+      font-size: 0.8rem;
+    }
+
+    .footer a {
+      color: var(--accent-hover);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    /* Responsive */
+    @media (max-width: 640px) {
+      .intro h2 { font-size: 1.5rem; }
+      .samples-grid { grid-template-columns: 1fr; }
+      .sample-preview { height: 180px; }
+      .main { padding: 32px 16px 60px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="header">
+    <div class="header-inner">
+      <img src="sample-1/Timeless_Logo.png" alt="Timeless Relocation Logo">
+      <h1>Website Redesign Showcase</h1>
+      <p>Review the design options below and choose your preferred version</p>
+    </div>
+  </header>
+
+  <main class="main">
+    <section class="intro">
+      <h2>Choose Your New Website Design</h2>
+      <p>We've prepared 4 unique redesign options for Timeless Relocation. Click any option to view it in full, then let us know which one you'd like to go with.</p>
+    </section>
+
+    <div class="samples-grid">
+
+      <a href="sample-1/index.html" class="sample-card">
+        <div class="sample-preview">
+          <iframe src="sample-1/index.html" loading="lazy" tabindex="-1" title="Sample 1 Preview"></iframe>
+          <div class="sample-overlay">
+            <span class="preview-btn">View Full Site</span>
+          </div>
+        </div>
+        <div class="sample-info">
+          <span class="sample-number">Option 1</span>
+          <h3>Corporate Classic</h3>
+          <p>Professional structured layout with a clean corporate feel and service-oriented navigation.</p>
+        </div>
+      </a>
+
+      <a href="sample-2/index.html" class="sample-card">
+        <div class="sample-preview">
+          <iframe src="sample-2/index.html" loading="lazy" tabindex="-1" title="Sample 2 Preview"></iframe>
+          <div class="sample-overlay">
+            <span class="preview-btn">View Full Site</span>
+          </div>
+        </div>
+        <div class="sample-info">
+          <span class="sample-number">Option 2</span>
+          <h3>Modern Minimal</h3>
+          <p>Contemporary minimal design with strong call-to-actions and seamless WhatsApp integration.</p>
+        </div>
+      </a>
+
+      <a href="sample-3/index.html" class="sample-card">
+        <div class="sample-preview">
+          <iframe src="sample-3/index.html" loading="lazy" tabindex="-1" title="Sample 3 Preview"></iframe>
+          <div class="sample-overlay">
+            <span class="preview-btn">View Full Site</span>
+          </div>
+        </div>
+        <div class="sample-info">
+          <span class="sample-number">Option 3</span>
+          <h3>Clean & Neutral</h3>
+          <p>Understated elegance with a neutral palette, card-based layouts, and content-first approach.</p>
+        </div>
+      </a>
+
+      <a href="sample-4/index.html" class="sample-card">
+        <div class="sample-preview">
+          <iframe src="sample-4/index.html" loading="lazy" tabindex="-1" title="Sample 4 Preview"></iframe>
+          <div class="sample-overlay">
+            <span class="preview-btn">View Full Site</span>
+          </div>
+        </div>
+        <div class="sample-info">
+          <span class="sample-number">Option 4</span>
+          <h3>Premium Dark</h3>
+          <p>Bold navy and coral theme with cinematic animations and an upscale, luxury feel.</p>
+        </div>
+      </a>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <p>Powered by <a href="mailto:hello@quartermasters.me">Quartermasters FZC</a></p>
+  </footer>
+
+</body>
+</html>
